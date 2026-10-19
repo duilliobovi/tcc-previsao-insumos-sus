@@ -1,0 +1,6 @@
+# Dependências do processo de previsão e da inferência estatística (Python ≥ 3.11)
+numpy>=2.0
+pandas>=2.2
+scipy>=1.13
+scikit-learn>=1.5
+statsmodels>=0.14

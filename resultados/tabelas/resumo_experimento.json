@@ -1,0 +1,92 @@
+{
+  "n_series": 54,
+  "periodo": [
+    "2008-01",
+    "2025-04"
+  ],
+  "origens_validacao": [
+    "2022-11",
+    "2022-12",
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04"
+  ],
+  "origens_teste": [
+    "2023-05",
+    "2023-06",
+    "2023-07",
+    "2023-08",
+    "2023-09",
+    "2023-10",
+    "2023-11",
+    "2023-12",
+    "2024-01",
+    "2024-02",
+    "2024-03",
+    "2024-04",
+    "2024-05",
+    "2024-06",
+    "2024-07",
+    "2024-08",
+    "2024-09",
+    "2024-10"
+  ],
+  "vencedores_validacao": {
+    "1": {
+      "E*": "Theta",
+      "ML*": "Random Forest"
+    },
+    "3": {
+      "E*": "Theta",
+      "ML*": "Random Forest"
+    },
+    "6": {
+      "E*": "SARIMA",
+      "ML*": "Ridge"
+    }
+  },
+  "friedman_qui2": 92.03968253968247,
+  "iman_davenport_F": 21.02990385602352,
+  "iman_davenport_p": 9.006889379922522e-21,
+  "nemenyi_cd": 1.226016403732928,
+  "baseline_mase_menor_1": {
+    "sucessos": 24,
+    "n": 54,
+    "ic95": [
+      0.30919647438775744,
+      0.5859996719630803
+    ]
+  },
+  "estoque_wilcoxon_h1_tau09": {
+    "estatistica": 337.0,
+    "p": 0.00048041824690786057,
+    "mediana_dif": -0.027321045581620428
+  },
+  "pct_observacoes_ausentes": 0.551994301994302,
+  "H1_ic_blocos_origens": [
+    -0.1947535887438114,
+    -0.14159156745151166
+  ],
+  "efeito_minimo_detectavel": 0.10596825902052473,
+  "N_series": 54,
+  "desvio_D": 0.31317609639128774,
+  "tempo_s": {
+    "baselines": 0.04264700900239404,
+    "ml": 0.0,
+    "total": 1.0243063230009284
+  },
+  "hiperparametros_ml": {
+    "Ridge": "Pipeline(steps=[('standardscaler', StandardScaler()), ('ridge', Ridge())])",
+    "Random Forest": "RandomForestRegressor(max_features=0.5, min_samples_leaf=5, n_estimators=300,\n                      n_jobs=-1, random_state=2026)",
+    "Gradient Boosting": "HistGradientBoostingRegressor(l2_regularization=1.0, learning_rate=0.05,\n                              max_iter=400, random_state=2026)"
+  },
+  "ambiente": {
+    "python": "3.12.3",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "statsmodels": "0.15.0"
+  }
+}

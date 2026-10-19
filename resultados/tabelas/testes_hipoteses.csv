@@ -1,0 +1,4 @@
+hipotese,teste,estatistica,p_valor,efeito,ic_inf,ic_sup,observacao,p_holm,rejeita_H0
+H1,Wilcoxon pareado unilateral (N séries) + IC bootstrap de Δ,292.0,5.2464246210602095e-05,-0.17472069551324346,-0.2625630773832327,-0.09596563957892716,razão mediana MASE(ML*)/MASE(E*) = 0.901,0.00015739273863180629,True
+H4,"Friedman sobre d_i(h), h ∈ {1,3,6}",7.259259259259238,0.02652600703682767,0.133284243836241,,,efeito = amplitude das medianas de d_i(h),0.05305201407365534,False
+H5,"Wilcoxon das posições do vencedor (Random Forest) MASE × pinball(0,9)",,0.9930682801902739,0.41269841269841273,,,efeito = τ de Kendall médio entre rankings por série,0.9930682801902739,False
