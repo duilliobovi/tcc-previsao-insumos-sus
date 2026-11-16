@@ -1,0 +1,7 @@
+Hipótese,Comparação,Razão,IC 95%,p de Holm,Decisão
+H1 (h = 1),Random Forest / ETS automático,"0,821","0,755 a 0,885","< 0,001",rejeita H0
+H1 (h = 3),Ridge / Ingênuo,"0,947","0,887 a 1,012","0,053",não rejeita H0
+H1 (h = 6),Ridge / Theta,"0,903","0,844 a 0,968","0,026",rejeita H0
+H2,Ridge global / local,"0,915","0,838 a 0,983","0,036",rejeita H0
+H3 (L = 3),custo Ridge / Ingênuo,"0,819","0,760 a 0,883","< 0,001",rejeita H0
+H3 (L = 6),custo Ridge / Ingênuo,"0,737","0,674 a 0,805","< 0,001",rejeita H0

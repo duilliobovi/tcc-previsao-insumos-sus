@@ -1,0 +1,119 @@
+{
+  "n_series": 54,
+  "periodo": [
+    "2008-01",
+    "2025-04"
+  ],
+  "fases": {
+    "validacao": [
+      "2021-12",
+      "2022-01",
+      "2022-02",
+      "2022-03",
+      "2022-04",
+      "2022-05",
+      "2022-06",
+      "2022-07",
+      "2022-08",
+      "2022-09",
+      "2022-10",
+      "2022-11"
+    ],
+    "intervalo": [
+      "2022-12",
+      "2023-01",
+      "2023-02",
+      "2023-03",
+      "2023-04"
+    ],
+    "teste": [
+      "2023-05",
+      "2023-06",
+      "2023-07",
+      "2023-08",
+      "2023-09",
+      "2023-10",
+      "2023-11",
+      "2023-12",
+      "2024-01",
+      "2024-02",
+      "2024-03",
+      "2024-04",
+      "2024-05",
+      "2024-06",
+      "2024-07",
+      "2024-08",
+      "2024-09",
+      "2024-10"
+    ]
+  },
+  "vencedores_validacao": {
+    "h1": {
+      "E*": "ETS automático",
+      "ML*": "Random Forest"
+    },
+    "h3": {
+      "E*": "Ingênuo",
+      "ML*": "Ridge"
+    },
+    "h6": {
+      "E*": "Theta",
+      "ML*": "Ridge"
+    },
+    "L3": {
+      "E*": "Ingênuo",
+      "ML*": "Ridge"
+    },
+    "L6": {
+      "E*": "Ingênuo",
+      "ML*": "Ridge"
+    }
+  },
+  "hiperparametros_escolhidos": {
+    "Gradient Boosting": {
+      "learning_rate": 0.03,
+      "max_leaf_nodes": 7
+    },
+    "Random Forest": {
+      "min_samples_leaf": 10,
+      "max_features": 0.33
+    },
+    "Ridge": {
+      "alpha": 10.0
+    }
+  },
+  "friedman_qui2": 76.96790123456788,
+  "friedman_p": 1.9888048123572061e-13,
+  "kendall_tau_mase_pinball_medio": 0.24691358024691357,
+  "pct_observacoes_ausentes": 0.551994301994302,
+  "tempos": {
+    "baselines_python_cpu_s": 152.46086746399982,
+    "baselines_python_parede_s": 13.301079778000712,
+    "baselines_r_parede_s": 266.8939611659989,
+    "ARIMA automático_cpu_s": 996.8200000000004,
+    "ETS automático_cpu_s": 1202.0349999999994,
+    "ml_global_parede_s": 283.4025909519987,
+    "Ridge (global)_cpu_s": 0.8230648950057002,
+    "Random Forest (global)_cpu_s": 2489.080996058009,
+    "Gradient Boosting (global)_cpu_s": 116.93993310399946,
+    "ml_local_cpu_s": 1281.8624540470003,
+    "ml_local_parede_s": 138.16206195700215,
+    "ajustes_por_modelo": {
+      "baseline": 1890,
+      "ml_global": 210,
+      "ml_local": 2916
+    }
+  },
+  "tempo_total_s": 1841.756981912,
+  "ambiente": {
+    "python": "3.12.3",
+    "processador": "x86_64",
+    "nucleos": 12,
+    "sistema": "Linux-6.12.116+deb13-amd64-x86_64-with-glibc2.41",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "statsmodels": "0.15.0"
+  }
+}

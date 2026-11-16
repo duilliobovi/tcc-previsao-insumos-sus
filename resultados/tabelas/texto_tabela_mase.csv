@@ -1,0 +1,13 @@
+Modelo,Família,MASE h = 1,MASE h = 3,MASE h = 6,WAPE h = 1 (%)
+Ingênuo,Estatístico,"0,978","1,202","1,408","10,9"
+Deriva,Estatístico,"0,981","1,201","1,409","10,9"
+ARIMA automático,Estatístico,"1,065","1,258","1,421","13,1"
+ETS automático,Estatístico,"1,116","1,309","1,454","13,7"
+Theta,Estatístico,"1,168","1,356","1,468","14,3"
+Ingênuo sazonal,Estatístico,"1,745","1,722","1,707","19,9"
+Random Forest,ML global,"0,919","1,108","1,306","11,1"
+Ridge,ML global,"0,952","1,140","1,333","11,5"
+Gradient Boosting,ML global,"0,962","1,142","1,335","11,0"
+Random Forest (local),ML local,"0,961","1,159","1,333","11,3"
+Gradient Boosting (local),ML local,"1,024","1,207","1,378","11,6"
+Ridge (local),ML local,"1,056","1,425","2,694","11,3"

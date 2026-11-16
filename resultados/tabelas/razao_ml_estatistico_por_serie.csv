@@ -1,0 +1,163 @@
+serie,h,log_razao,ml,e
+06_medicamentos|AC,1,-0.18991414021964834,Random Forest,ETS automático
+06_medicamentos|AL,1,0.043465636898516936,Random Forest,ETS automático
+06_medicamentos|AM,1,0.09044644091867443,Random Forest,ETS automático
+06_medicamentos|AP,1,-0.36922782211451827,Random Forest,ETS automático
+06_medicamentos|BA,1,-0.02385555403452524,Random Forest,ETS automático
+06_medicamentos|CE,1,-0.14308877938551748,Random Forest,ETS automático
+06_medicamentos|DF,1,-0.8775683122655275,Random Forest,ETS automático
+06_medicamentos|ES,1,-0.38420471788119637,Random Forest,ETS automático
+06_medicamentos|GO,1,-0.32006200912121247,Random Forest,ETS automático
+06_medicamentos|MA,1,-1.0615981209237513,Random Forest,ETS automático
+06_medicamentos|MG,1,-0.03889233631110256,Random Forest,ETS automático
+06_medicamentos|MS,1,0.04633567352194243,Random Forest,ETS automático
+06_medicamentos|MT,1,-0.7443609876657669,Random Forest,ETS automático
+06_medicamentos|PA,1,-1.008894628421439,Random Forest,ETS automático
+06_medicamentos|PB,1,-0.25656122402114795,Random Forest,ETS automático
+06_medicamentos|PE,1,-0.3396641370686438,Random Forest,ETS automático
+06_medicamentos|PI,1,-0.2624809040962244,Random Forest,ETS automático
+06_medicamentos|PR,1,-0.007186768881572672,Random Forest,ETS automático
+06_medicamentos|RJ,1,-0.1390804467239952,Random Forest,ETS automático
+06_medicamentos|RN,1,-0.654120161082941,Random Forest,ETS automático
+06_medicamentos|RO,1,-0.17121075882934464,Random Forest,ETS automático
+06_medicamentos|RR,1,-0.30327928405651666,Random Forest,ETS automático
+06_medicamentos|RS,1,-0.3383575140495607,Random Forest,ETS automático
+06_medicamentos|SC,1,-0.0027115147194650023,Random Forest,ETS automático
+06_medicamentos|SE,1,-1.7314255441659672,Random Forest,ETS automático
+06_medicamentos|SP,1,-0.2640028504659186,Random Forest,ETS automático
+06_medicamentos|TO,1,-1.0338952843757176,Random Forest,ETS automático
+07_opm|AC,1,-0.03887135512375371,Random Forest,ETS automático
+07_opm|AL,1,-0.053215115716047534,Random Forest,ETS automático
+07_opm|AM,1,-0.10692215643600249,Random Forest,ETS automático
+07_opm|AP,1,0.008874459406942432,Random Forest,ETS automático
+07_opm|BA,1,-0.04424798628667995,Random Forest,ETS automático
+07_opm|CE,1,0.254067289933407,Random Forest,ETS automático
+07_opm|DF,1,-0.013930513898746649,Random Forest,ETS automático
+07_opm|ES,1,-0.05978089417540013,Random Forest,ETS automático
+07_opm|GO,1,-0.1197072673972222,Random Forest,ETS automático
+07_opm|MA,1,-0.12433916039262602,Random Forest,ETS automático
+07_opm|MG,1,-0.004581981479680412,Random Forest,ETS automático
+07_opm|MS,1,0.12116419517777283,Random Forest,ETS automático
+07_opm|MT,1,-0.004769538161413642,Random Forest,ETS automático
+07_opm|PA,1,0.10709795828480491,Random Forest,ETS automático
+07_opm|PB,1,0.010607558946049327,Random Forest,ETS automático
+07_opm|PE,1,-0.2931418246918399,Random Forest,ETS automático
+07_opm|PI,1,-0.29696620572467763,Random Forest,ETS automático
+07_opm|PR,1,-0.11909029151374444,Random Forest,ETS automático
+07_opm|RJ,1,0.16177124546616417,Random Forest,ETS automático
+07_opm|RN,1,0.07829345116241566,Random Forest,ETS automático
+07_opm|RO,1,-0.056137466566792735,Random Forest,ETS automático
+07_opm|RR,1,0.004366846286393959,Random Forest,ETS automático
+07_opm|RS,1,0.0593487351600692,Random Forest,ETS automático
+07_opm|SC,1,0.005877952745652606,Random Forest,ETS automático
+07_opm|SE,1,0.14067565097792176,Random Forest,ETS automático
+07_opm|SP,1,0.1430610089351729,Random Forest,ETS automático
+07_opm|TO,1,0.04923372602593314,Random Forest,ETS automático
+06_medicamentos|AC,3,-0.44809642699602587,Ridge,Ingênuo
+06_medicamentos|AL,3,-0.14342562385252963,Ridge,Ingênuo
+06_medicamentos|AM,3,-0.02070930710985356,Ridge,Ingênuo
+06_medicamentos|AP,3,0.40930602620921097,Ridge,Ingênuo
+06_medicamentos|BA,3,-0.16222660896275157,Ridge,Ingênuo
+06_medicamentos|CE,3,0.09040828343369607,Ridge,Ingênuo
+06_medicamentos|DF,3,0.7162592456477362,Ridge,Ingênuo
+06_medicamentos|ES,3,-0.3008435015273776,Ridge,Ingênuo
+06_medicamentos|GO,3,0.09442561545240973,Ridge,Ingênuo
+06_medicamentos|MA,3,0.4061963367150953,Ridge,Ingênuo
+06_medicamentos|MG,3,-0.015213906313970349,Ridge,Ingênuo
+06_medicamentos|MS,3,-0.11320158994057428,Ridge,Ingênuo
+06_medicamentos|MT,3,-0.01861178327023076,Ridge,Ingênuo
+06_medicamentos|PA,3,0.6119175171607578,Ridge,Ingênuo
+06_medicamentos|PB,3,-0.03719020276515419,Ridge,Ingênuo
+06_medicamentos|PE,3,-0.33547878776846063,Ridge,Ingênuo
+06_medicamentos|PI,3,0.2381321097382808,Ridge,Ingênuo
+06_medicamentos|PR,3,0.19495655823359775,Ridge,Ingênuo
+06_medicamentos|RJ,3,-0.1700679488463892,Ridge,Ingênuo
+06_medicamentos|RN,3,0.35151286615619887,Ridge,Ingênuo
+06_medicamentos|RO,3,-0.02880476966936745,Ridge,Ingênuo
+06_medicamentos|RR,3,0.06511498025599471,Ridge,Ingênuo
+06_medicamentos|RS,3,-0.24702787881062138,Ridge,Ingênuo
+06_medicamentos|SC,3,-0.1498442751110968,Ridge,Ingênuo
+06_medicamentos|SE,3,-0.06619050658827573,Ridge,Ingênuo
+06_medicamentos|SP,3,0.187030150196828,Ridge,Ingênuo
+06_medicamentos|TO,3,-0.04369993640793117,Ridge,Ingênuo
+07_opm|AC,3,-0.01331896101861446,Ridge,Ingênuo
+07_opm|AL,3,-0.1292203972289156,Ridge,Ingênuo
+07_opm|AM,3,-0.32328840936826975,Ridge,Ingênuo
+07_opm|AP,3,0.04566705198262833,Ridge,Ingênuo
+07_opm|BA,3,-0.041234333967479594,Ridge,Ingênuo
+07_opm|CE,3,-0.03305023616089003,Ridge,Ingênuo
+07_opm|DF,3,-0.1106216229112983,Ridge,Ingênuo
+07_opm|ES,3,-0.4383455624480968,Ridge,Ingênuo
+07_opm|GO,3,-0.4276461391982704,Ridge,Ingênuo
+07_opm|MA,3,-0.007003170088308542,Ridge,Ingênuo
+07_opm|MG,3,-0.3560696693610087,Ridge,Ingênuo
+07_opm|MS,3,0.3497921321864793,Ridge,Ingênuo
+07_opm|MT,3,-0.44683362045354774,Ridge,Ingênuo
+07_opm|PA,3,-0.15579010043836353,Ridge,Ingênuo
+07_opm|PB,3,0.09879828666753976,Ridge,Ingênuo
+07_opm|PE,3,-0.33309358925307697,Ridge,Ingênuo
+07_opm|PI,3,-0.11622954607350419,Ridge,Ingênuo
+07_opm|PR,3,-0.38454708281725886,Ridge,Ingênuo
+07_opm|RJ,3,-0.30799805341661823,Ridge,Ingênuo
+07_opm|RN,3,-0.18766334867093806,Ridge,Ingênuo
+07_opm|RO,3,-0.0367009840630302,Ridge,Ingênuo
+07_opm|RR,3,-0.25571577755233643,Ridge,Ingênuo
+07_opm|RS,3,-0.3274544750269839,Ridge,Ingênuo
+07_opm|SC,3,0.21806048396809496,Ridge,Ingênuo
+07_opm|SE,3,-0.10660031974785797,Ridge,Ingênuo
+07_opm|SP,3,-0.010611745022430678,Ridge,Ingênuo
+07_opm|TO,3,-0.16284240394779362,Ridge,Ingênuo
+06_medicamentos|AC,6,-0.29558811411797364,Ridge,Theta
+06_medicamentos|AL,6,-0.088249727797564,Ridge,Theta
+06_medicamentos|AM,6,-0.0706276544185225,Ridge,Theta
+06_medicamentos|AP,6,0.029909168023940298,Ridge,Theta
+06_medicamentos|BA,6,0.0007725248052025323,Ridge,Theta
+06_medicamentos|CE,6,-0.016084779458139804,Ridge,Theta
+06_medicamentos|DF,6,-0.31184893583323375,Ridge,Theta
+06_medicamentos|ES,6,-0.16508133863019145,Ridge,Theta
+06_medicamentos|GO,6,0.1508992407276612,Ridge,Theta
+06_medicamentos|MA,6,-0.3866844840995882,Ridge,Theta
+06_medicamentos|MG,6,-0.09135704403314342,Ridge,Theta
+06_medicamentos|MS,6,0.3185979688254128,Ridge,Theta
+06_medicamentos|MT,6,-0.6501841134387502,Ridge,Theta
+06_medicamentos|PA,6,-0.1815333378046279,Ridge,Theta
+06_medicamentos|PB,6,-0.49978750441991604,Ridge,Theta
+06_medicamentos|PE,6,0.005989033690862771,Ridge,Theta
+06_medicamentos|PI,6,0.06927395689027022,Ridge,Theta
+06_medicamentos|PR,6,0.4786279285367231,Ridge,Theta
+06_medicamentos|RJ,6,-0.7320194904693046,Ridge,Theta
+06_medicamentos|RN,6,-0.1067801178794248,Ridge,Theta
+06_medicamentos|RO,6,-0.029709442706641484,Ridge,Theta
+06_medicamentos|RR,6,-0.3470053732674579,Ridge,Theta
+06_medicamentos|RS,6,-0.37126905142256383,Ridge,Theta
+06_medicamentos|SC,6,-0.11067066352121689,Ridge,Theta
+06_medicamentos|SE,6,-0.22063733364262633,Ridge,Theta
+06_medicamentos|SP,6,-0.21342555295031856,Ridge,Theta
+06_medicamentos|TO,6,-0.17982775464090484,Ridge,Theta
+07_opm|AC,6,0.11026977298453566,Ridge,Theta
+07_opm|AL,6,-0.1483938712899968,Ridge,Theta
+07_opm|AM,6,-0.24922048150217543,Ridge,Theta
+07_opm|AP,6,-0.27631698546562433,Ridge,Theta
+07_opm|BA,6,-0.29819428104357004,Ridge,Theta
+07_opm|CE,6,0.4499737104261303,Ridge,Theta
+07_opm|DF,6,0.020947905172181022,Ridge,Theta
+07_opm|ES,6,-0.031477114534613146,Ridge,Theta
+07_opm|GO,6,0.18299601870876736,Ridge,Theta
+07_opm|MA,6,-0.0193962396757175,Ridge,Theta
+07_opm|MG,6,-0.5411529866950996,Ridge,Theta
+07_opm|MS,6,-0.06319462675092884,Ridge,Theta
+07_opm|MT,6,-0.005927464336926892,Ridge,Theta
+07_opm|PA,6,-0.046657886471473696,Ridge,Theta
+07_opm|PB,6,0.06541695598980884,Ridge,Theta
+07_opm|PE,6,-0.22027801495880375,Ridge,Theta
+07_opm|PI,6,-0.09878745093494076,Ridge,Theta
+07_opm|PR,6,0.12284310442197915,Ridge,Theta
+07_opm|RJ,6,-0.14621500204126997,Ridge,Theta
+07_opm|RN,6,-0.29807214947600236,Ridge,Theta
+07_opm|RO,6,0.10545353291099578,Ridge,Theta
+07_opm|RR,6,-0.5100870962666575,Ridge,Theta
+07_opm|RS,6,-0.25465784334044417,Ridge,Theta
+07_opm|SC,6,0.22097920500455243,Ridge,Theta
+07_opm|SE,6,-0.06672108814453818,Ridge,Theta
+07_opm|SP,6,0.5539716452312325,Ridge,Theta
+07_opm|TO,6,-0.058549119504827926,Ridge,Theta

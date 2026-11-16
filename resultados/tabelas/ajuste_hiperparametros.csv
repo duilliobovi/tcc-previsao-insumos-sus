@@ -1,0 +1,19 @@
+rotulo,mase_validacao,algoritmo,hiperparametros,escolhido
+Gradient Boosting#0,0.9793406325399983,Gradient Boosting,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 7}",True
+Gradient Boosting#1,0.9821630687271241,Gradient Boosting,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",False
+Gradient Boosting#2,0.9826111901202308,Gradient Boosting,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",False
+Gradient Boosting#3,0.9887235357443621,Gradient Boosting,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 7}",False
+Gradient Boosting#4,0.9916412283805014,Gradient Boosting,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",False
+Gradient Boosting#5,0.9981870790784747,Gradient Boosting,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",False
+Random Forest#0,0.9823413636986752,Random Forest,"{""min_samples_leaf"": 2, ""max_features"": 0.33}",False
+Random Forest#1,0.9892668817565223,Random Forest,"{""min_samples_leaf"": 2, ""max_features"": 0.66}",False
+Random Forest#2,0.9738983959460966,Random Forest,"{""min_samples_leaf"": 5, ""max_features"": 0.33}",False
+Random Forest#3,0.984383911051859,Random Forest,"{""min_samples_leaf"": 5, ""max_features"": 0.66}",False
+Random Forest#4,0.9682991774382284,Random Forest,"{""min_samples_leaf"": 10, ""max_features"": 0.33}",True
+Random Forest#5,0.9718582854837949,Random Forest,"{""min_samples_leaf"": 10, ""max_features"": 0.66}",False
+Ridge#0,0.9550824418617128,Ridge,"{""alpha"": 0.01}",False
+Ridge#1,0.9550502730929762,Ridge,"{""alpha"": 0.1}",False
+Ridge#2,0.9547469693285433,Ridge,"{""alpha"": 1.0}",False
+Ridge#3,0.9531763242172138,Ridge,"{""alpha"": 10.0}",True
+Ridge#4,0.9550266195634691,Ridge,"{""alpha"": 100.0}",False
+Ridge#5,0.9576145870333947,Ridge,"{""alpha"": 1000.0}",False

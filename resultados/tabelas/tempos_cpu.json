@@ -1,0 +1,18 @@
+{
+  "baselines_python_cpu_s": 152.46086746399982,
+  "baselines_python_parede_s": 13.301079778000712,
+  "baselines_r_parede_s": 266.8939611659989,
+  "ARIMA automático_cpu_s": 996.8200000000004,
+  "ETS automático_cpu_s": 1202.0349999999994,
+  "ml_global_parede_s": 283.4025909519987,
+  "Ridge (global)_cpu_s": 0.8230648950057002,
+  "Random Forest (global)_cpu_s": 2489.080996058009,
+  "Gradient Boosting (global)_cpu_s": 116.93993310399946,
+  "ml_local_cpu_s": 1281.8624540470003,
+  "ml_local_parede_s": 138.16206195700215,
+  "ajustes_por_modelo": {
+    "baseline": 1890,
+    "ml_global": 210,
+    "ml_local": 2916
+  }
+}

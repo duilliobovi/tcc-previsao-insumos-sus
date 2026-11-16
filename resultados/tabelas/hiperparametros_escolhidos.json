@@ -1,0 +1,1 @@
+{"Gradient Boosting": {"learning_rate": 0.03, "max_leaf_nodes": 7}, "Random Forest": {"min_samples_leaf": 10, "max_features": 0.33}, "Ridge": {"alpha": 10.0}}
