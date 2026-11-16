@@ -1,0 +1,19 @@
+# Dados brutos: nunca versionar (ver dados/FONTES_DE_DADOS.md)
+/DATASETS
+*.dbc
+# Python
+__pycache__/
+*.pyc
+.venv/
+# R
+.Rhistory
+.RData
+.Rproj.user/
+# Resultados volumosos regeneráveis
+resultados/tabelas/previsoes.csv
+resultados/tabelas/previsoes_r.csv
+
+# Ambiente
+__pycache__/
+*.log
+resultados/r_regional.err
