@@ -1,12 +1,19 @@
 """Inferência sobre diferenças de desempenho.
 
-A unidade inferencial é a **série** (N = 54): as conclusões principais vêm de
-estatísticas de painel, cuja aproximação melhora com N, e não de testes por
-série, cujo regime assintótico (T → ∞) não vale com 18 origens de teste.
-A dependência entre séries (choques nacionais) é tratada em uma análise de
-sensibilidade com bootstrap em blocos sobre as origens.
+Estimando principal: a razão de erro entre dois modelos, medida pela média geométrica, entre
+as séries, de MASE(A)/MASE(B), por horizonte. Em log, r_i = log(MASE_A,i / MASE_B,i); a razão
+geométrica é exp(média de r_i), e valores abaixo de 1 indicam vantagem de A.
+
+As 54 séries não são independentes: são 27 UFs com dois grupos cada, sujeitas a choques comuns e
+a dependência espacial (achado E2). Por isso:
+    * a unidade do teste é a **UF** (N = 27): r é primeiro promediado nos dois grupos da UF;
+    * o intervalo vem do bootstrap por conglomerado (reamostra UFs, levando os dois grupos juntos);
+    * como sensibilidade, o bootstrap em dois níveis reamostra UFs e blocos de origens ao mesmo tempo,
+      e um modelo misto estima o efeito com intercepto aleatório de UF.
+Testes série a série (Diebold-Mariano) não são usados: com 18 origens, o regime assintótico não vale.
 """
 
+import warnings
 from dataclasses import dataclass
 
 import numpy as np
@@ -47,6 +54,60 @@ def bootstrap_blocos(x: np.ndarray, bloco: int, reamostragens: int, rng: np.rand
     return tuple(np.quantile(medias, [alfa / 2, 1 - alfa / 2]))
 
 
+def wilcoxon_uf(r: pd.Series, uf: pd.Series, alternativa: str = "less") -> tuple[float, float, int]:
+    """Wilcoxon dos postos sinalizados sobre as médias de r por UF (unidade independente de análise)."""
+    medias = r.groupby(uf.to_numpy()).mean().dropna()
+    teste = stats.wilcoxon(medias.to_numpy(), alternative=alternativa)
+    return float(teste.statistic), float(teste.pvalue), int(len(medias))
+
+
+def bootstrap_conglomerado(r: pd.Series, uf: pd.Series, reamostragens: int, rng: np.random.Generator,
+                           alfa: float = 0.05) -> tuple[float, float]:
+    """IC percentil da média de r reamostrando UFs com reposição (os dois grupos da UF vão juntos)."""
+    soma = r.groupby(uf.to_numpy()).sum()
+    contagem = r.groupby(uf.to_numpy()).count()
+    idx = rng.integers(0, len(soma), size=(reamostragens, len(soma)))
+    medias = soma.to_numpy()[idx].sum(axis=1) / contagem.to_numpy()[idx].sum(axis=1)
+    return tuple(np.quantile(medias, [alfa / 2, 1 - alfa / 2]))
+
+
+def bootstrap_dois_niveis(erro_a: np.ndarray, erro_b: np.ndarray, uf_da_serie: np.ndarray, bloco: int,
+                          reamostragens: int, rng: np.random.Generator, alfa: float = 0.05) -> tuple[float, float]:
+    """IC da média de log(MASE_A/MASE_B) reamostrando UFs e blocos móveis de origens ao mesmo tempo.
+
+    ``erro_a`` e ``erro_b``: matrizes séries × origens de erros absolutos escalados.
+    """
+    ufs = np.unique(uf_da_serie)
+    linhas_uf = [np.flatnonzero(uf_da_serie == u) for u in ufs]
+    n_origens = erro_a.shape[1]
+    n_blocos = int(np.ceil(n_origens / bloco))
+    medias = np.empty(reamostragens)
+    for b in range(reamostragens):
+        linhas = np.concatenate([linhas_uf[i] for i in rng.integers(0, len(ufs), len(ufs))])
+        inicios = rng.integers(0, n_origens - bloco + 1, n_blocos)
+        colunas = (inicios[:, None] + np.arange(bloco)).ravel()[:n_origens]
+        with np.errstate(all="ignore"), warnings.catch_warnings():
+            warnings.simplefilter("ignore", category=RuntimeWarning)  # série sem alvo observado no bloco sorteado
+            a = np.nanmean(erro_a[np.ix_(linhas, colunas)], axis=1)
+            e = np.nanmean(erro_b[np.ix_(linhas, colunas)], axis=1)
+        medias[b] = np.nanmean(np.log(a / e))
+    return tuple(np.quantile(medias, [alfa / 2, 1 - alfa / 2]))
+
+
+def benjamini_hochberg(p: np.ndarray) -> np.ndarray:
+    """p-valores ajustados por Benjamini-Hochberg (controle da taxa de falsas descobertas)."""
+    p = np.asarray(p, dtype=float)
+    n = len(p)
+    ordem = np.argsort(p)
+    ajustado = np.empty(n)
+    acumulado = 1.0
+    for posicao in range(n - 1, -1, -1):
+        i = ordem[posicao]
+        acumulado = min(acumulado, p[i] * n / (posicao + 1))
+        ajustado[i] = acumulado
+    return ajustado
+
+
 def holm(p: dict[str, float]) -> dict[str, float]:
     """p-valores ajustados por Holm-Bonferroni (controle de FWER)."""
     ordem = sorted(p, key=p.get)
@@ -73,7 +134,10 @@ def friedman_nemenyi(perdas: pd.DataFrame) -> tuple[pd.Series, float, float, flo
 
 
 def efeito_minimo_detectavel(n: int, desvio: float, alfa: float = 0.05, poder: float = 0.8) -> float:
-    """Menor diferença média detectável (teste pareado unilateral, aproximação normal)."""
+    """Menor diferença média detectável com poder de 80% (teste pareado unilateral, aproximação normal).
+
+    Informa a sensibilidade do desenho; não é usado para julgar, depois do fato, se o estudo tinha poder.
+    """
     return float((stats.norm.ppf(1 - alfa) + stats.norm.ppf(poder)) * desvio / np.sqrt(n))
 
 

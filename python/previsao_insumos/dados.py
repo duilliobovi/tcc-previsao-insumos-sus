@@ -91,6 +91,25 @@ def carregar_painel(config: Configuracao) -> pd.DataFrame:
     return painel
 
 
+def valor_unitario_medio(config: Configuracao, ate: pd.Period, meses: int = 12) -> pd.Series:
+    """Valor aprovado por unidade (R$) de cada série, nos ``meses`` meses até ``ate`` (inclusive).
+
+    É o valor médio de tabela (SIGTAP) que o SUS reconheceu por unidade aprovada: razão entre o
+    valor aprovado e a quantidade aprovada do mesmo grupo e UF. Serve para expressar em reais
+    as quantidades da simulação de estoque; usa só meses anteriores ao teste.
+    """
+    valores = {}
+    for grupo in config.grupos:
+        base = config.dir_tabnet_grupos
+        qtd = ler_tabnet_mensal(base / f"tabnet_qauf__grupo_{grupo}__qtd_aprovada.csv")
+        val = ler_tabnet_mensal(base / f"tabnet_qauf__grupo_{grupo}__valor_aprovado.csv")
+        janela = (qtd.index <= ate) & (qtd.index > ate - meses)
+        for uf in qtd.columns:
+            q, v = qtd.loc[janela, uf].sum(), val.loc[janela, uf].sum()
+            valores[f"{grupo}|{uf}"] = v / q if q > 0 else np.nan
+    return pd.Series(valores, name="valor_unitario")
+
+
 def matriz_series(painel: pd.DataFrame) -> pd.DataFrame:
     """Tabela larga ``data × serie`` com os valores limpos (NaN = ausente)."""
     return painel.pivot(index="data", columns="serie", values="y").sort_index()

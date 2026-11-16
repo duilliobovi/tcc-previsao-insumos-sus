@@ -4,3 +4,5 @@ pandas>=2.2
 scipy>=1.13
 scikit-learn>=1.5
 statsmodels>=0.14
+threadpoolctl>=3.5
+# Versões exatas usadas nos resultados do trabalho: requirements-lock.txt

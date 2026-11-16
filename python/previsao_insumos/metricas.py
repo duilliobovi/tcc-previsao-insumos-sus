@@ -1,6 +1,6 @@
 """Métricas de erro escaladas.
 
-O MAPE da Entrega I foi substituído pelo MASE (Hyndman; Koehler, 2006): é
+Usa-se o MASE (Hyndman; Koehler, 2006): é
 definido mesmo com zeros, é comparável entre séries de escalas distintas e tem
 interpretação direta (MASE < 1 = melhor que o ingênuo sazonal dentro da
 amostra). A perda quantílica (pinball) avalia o quantil usado na decisão de
@@ -14,6 +14,12 @@ def escala_sazonal(y: np.ndarray, m: int = 12) -> float:
     """MAE do ingênuo sazonal dentro da amostra; denominador do MASE (ignora NaN)."""
     diferencas = np.abs(y[m:] - y[:-m])
     escala = np.nanmean(diferencas)
+    return float(escala) if np.isfinite(escala) and escala > 0 else np.nan
+
+
+def escala_ingenua(y: np.ndarray) -> float:
+    """MAE do ingênuo simples (passeio aleatório) dentro da amostra; MASE alternativo (achado A1)."""
+    escala = np.nanmean(np.abs(np.diff(y)))
     return float(escala) if np.isfinite(escala) and escala > 0 else np.nan
 
 

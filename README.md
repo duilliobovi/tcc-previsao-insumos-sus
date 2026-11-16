@@ -1,91 +1,83 @@
-# Previsão de demanda de insumos do SUS: machine learning × estatística, com análise espacial
+# Machine learning × modelos estatísticos na previsão da demanda ambulatorial de medicamentos e OPM no SUS
 
-Código das análises estatísticas e dos algoritmos do Trabalho de Conclusão de Curso **"Análise de
-algoritmos de machine learning para previsão de demanda de insumos hospitalares"**, do Bacharelado em
-Ciência de Dados da Universidade Virtual do Estado de São Paulo (UNIVESP), 2026, em sua segunda entrega
-(relatório parcial).
+Código, dados derivados e resultados do Trabalho de Conclusão de Curso **"Análise de algoritmos de machine
+learning e modelos estatísticos na previsão da demanda ambulatorial de medicamentos e OPM no SUS: desempenho
+preditivo, simulação de estoques e diferenças regionais"**, do Bacharelado em Ciência de Dados da Universidade
+Virtual do Estado de São Paulo (UNIVESP), 2026.
 
-**Perguntas de pesquisa**
+## Perguntas
 
-1. Algoritmos de *machine learning* superam métodos estatísticos clássicos na previsão mensal da demanda
-   de medicamentos (grupo 06) e de órteses, próteses e materiais especiais (grupo 07) do SUS nas 27 UFs?
-2. Quais regiões concentram gargalos no abastecimento desses insumos, e esses gargalos se concentram em
-   áreas vizinhas?
+1. **Desempenho preditivo.** Algoritmos de *machine learning* (Ridge, Random Forest, Gradient Boosting; global e
+   local) erram menos que seis modelos estatísticos (ingênuo, deriva, ingênuo sazonal, Theta, ETS e ARIMA
+   automáticos) na previsão mensal da quantidade aprovada no SIA/SUS dos grupos 06 (medicamentos) e 07 (OPM),
+   nas 27 UFs, a 1, 3 e 6 meses?
+2. **Simulação de estoques.** Com prazo de compra de 3 e 6 meses, o ganho de precisão reduz o custo de estoque?
+3. **Diferenças regionais.** O ganho é homogêneo entre as UFs ou se agrupa no espaço?
 
-## Principais resultados (teste: 18 origens, mai./2023–out./2024; 54 séries)
+O plano de análise foi registrado antes da execução do teste: `git show plano-analise-final`
+(arquivo [`docs/plano_analise.md`](docs/plano_analise.md)).
 
-| Resultado | Valor |
-|---|---|
-| Melhor modelo (posto médio de Friedman) | *Random Forest* global (2,70), seguido de Ridge (2,93) |
-| H1: Δ = MASE(ML\*) − MASE(E\*) | −0,175 (IC 95%: −0,263 a −0,096); Wilcoxon, p de Holm = 0,00016 |
-| Redução mediana do erro | 10% |
-| Estoque com o mesmo nível de serviço (τ = 0,9) | −2,7 p.p. da demanda (Wilcoxon, p < 0,001) |
-| Moran global da dificuldade de previsão (MASE por UF) | I = 0,276; pseudo-p = 0,022 (agrupada no Norte e no Nordeste) |
-| Moran global do Índice de Gargalo Logístico (IGL) | I = 0,062; pseudo-p = 0,23 (gargalo heterogêneo) |
+## Principais resultados
+
+Os números abaixo são lidos de `resultados/numeros.json`, gerado pelo código (ver `resultados/tabelas/`):
+`testes_hipoteses.csv` (hipóteses confirmatórias, com Holm), `resumo_metricas_teste.csv` (erro por modelo e
+horizonte), `sensibilidade_ml_contra_cada_modelo.csv`, `simulacao_estoque_resumo.csv` e `regional_*.csv`.
 
 ## Estrutura
 
 ```
-├── dados/FONTES_DE_DADOS.md       portais oficiais, consultas e nomes de arquivo (os dados não são versionados)
-├── python/previsao_insumos/       previsão e inferência estatística
-│   ├── config.py          parâmetros do experimento (horizontes, origens, semente, reamostragens)
-│   ├── dados.py           leitura das séries e limpeza (falta de registro × zero, meses incompletos)
-│   ├── caracterizacao.py  decomposição STL (forças de tendência e sazonalidade), ADF/KPSS, Syntetos-Boylan
-│   ├── modelos.py         ingênuo sazonal, ETS, SARIMA e Theta; Ridge, Random Forest e Gradient Boosting globais
-│   ├── avaliacao.py       origem rolante em duas etapas (validação → teste) e intervalos conformais
-│   ├── metricas.py        MASE, RMSSE, WAPE e perda quantílica
-│   ├── inferencia.py      Wilcoxon, Friedman/Nemenyi, Holm, bootstrap (séries e blocos de origens)
-│   ├── estoque.py         simulação de estoque (order-up-to): fill rate × estoque médio
-│   └── pipeline.py        executa todas as etapas e grava resultados/tabelas/*.csv
-├── python/tests/          testes automáticos (inclui o teste de ausência de vazamento temporal)
+├── webscraping/                 coletor dos dados (TabNet por consulta automatizada, FTP, APIs) e testes
+├── dados/FONTES_DE_DADOS.md     portais, consultas e nomes de arquivo (os dados brutos não são versionados)
+├── dados/MANIFEST.csv           rastreio da coleta: URL, consulta, data e hora, período, SHA-256 de cada arquivo
+├── docs/plano_analise.md        hipóteses, métricas, critério de "desempenho adequado" (registrado com tag)
+├── python/previsao_insumos/     previsão, inferência, estoque e comportamento dos algoritmos
+│   ├── config.py          parâmetros congelados do experimento
+│   ├── dados.py           leitura do TabNet, limpeza (falta de registro × zero), valor unitário
+│   ├── caracterizacao.py  STL (forças de tendência e sazonalidade), ADF/KPSS, Syntetos-Boylan
+│   ├── modelos.py         linhas de base, atributos, algoritmos e grades de hiperparâmetros
+│   ├── avaliacao.py       origem rolante (validação | intervalo | teste), ML global e local, conformal móvel
+│   ├── metricas.py        MASE, RMSSE, WAPE, perda quantílica
+│   ├── inferencia.py      Wilcoxon por UF, bootstrap por conglomerado e em dois níveis, Holm, BH
+│   ├── estoque.py         política order-up-to com prazo de compra; custos pela razão crítica
+│   ├── comportamento.py   ablações, curvas de aprendizado, escala, permutação, dependência parcial
+│   ├── sensibilidade_local.py  H2 com o Ridge local de penalização ajustada na validação
+│   ├── numeros.py         números e tabelas do texto (pt-BR), nunca digitados
+│   └── pipeline.py        executa o experimento de ponta a ponta
+├── python/tests/          testes automáticos (inclui ausência de vazamento temporal)
 ├── R/
-│   ├── analise_espacial_regional.R   IGL, matriz de vizinhança (malha do IBGE), Moran, LISA e mapas
-│   ├── figuras_resultados.R          figuras dos resultados de previsão
-│   └── conferencia_baselines.R       reestimação das linhas de base com o pacote forecast
-└── resultados/            tabelas CSV e figuras PNG geradas pelo código
+│   ├── comum.R                    tema gráfico, malha das UFs, vizinhança, Moran e LISA (R base)
+│   ├── baselines_automaticas.R    ETS e ARIMA automáticos (pacote forecast)
+│   ├── diferencas_regionais.R     ganho e dificuldade por UF, regressão, Moran e LISA com BH
+│   └── figuras_resultados.R       figuras do trabalho (ggplot2)
+├── reproduzir.sh          comando único: pipeline, comportamento, R e testes
+└── resultados/            tabelas CSV, figuras PNG (300 dpi) e numeros.json
 ```
 
 ## Reprodução
 
-**Requisitos:**
-- Python ≥ 3.11, com as bibliotecas de `requirements.txt`.
-- R ≥ 4.3, com os pacotes `data.table`, `jsonlite`, `readxl`, `read.dbc`, `ggplot2`, `patchwork`,
-  `scales`, `ggrepel` e `forecast`.
-
-O pacote `read.dbc` pode ser instalado a partir do arquivo histórico do CRAN.
+Requisitos: Python ≥ 3.11 com `requirements.txt`; R ≥ 4.3 com `data.table`, `jsonlite`, `forecast`,
+`ggplot2`, `patchwork`, `scales` e `ggrepel`, nas versões de `renv.lock` (`renv::restore()`); versões exatas do Python em `requirements-lock.txt`.
 
 ```bash
 python3 -m pip install -r requirements.txt
-
-# 1) Obter os dados conforme dados/FONTES_DE_DADOS.md e gravá-los em DATASETS/
-
-# 2) Previsão e inferência (cerca de 10 minutos com 10 processos)
-cd python && python3 -m previsao_insumos.pipeline --processos 10 && cd ..
-
-# 3) Análise espacial, figuras e conferência R × Python
-Rscript R/analise_espacial_regional.R
-Rscript R/figuras_resultados.R
-Rscript R/conferencia_baselines.R
-
-# Testes
-(cd python && python3 -m unittest discover -s tests -t .)
+# 1) Obter os dados (dados/FONTES_DE_DADOS.md) com o coletor:  python3 webscraping/baixar_datasets.py --secoes 'DS-03|DS-11'
+# 2) Tudo de uma vez (cerca de 30 a 40 minutos em um computador pessoal de 12 núcleos):
+./reproduzir.sh
 ```
 
-**Opções:**
-- `TCC_DADOS=/caminho/DATASETS` indica outra pasta de dados.
-- `FIGURAS_SEM_TITULO=0` mantém título e fonte dentro das imagens. O padrão os omite, porque no trabalho
-  eles aparecem no texto, conforme a ABNT.
+`TCC_DADOS=/caminho/DATASETS` indica outra pasta de dados. O hardware, as versões das bibliotecas e os tempos de
+CPU de cada etapa ficam em `resultados/tabelas/resumo_experimento.json` e `tempos_cpu.json`.
 
 ## Decisões metodológicas
 
-- **Variável prevista:** quantidade aprovada mensal (SIA/SUS), grupos 06 e 07, 27 UFs, jan./2008 a
-  abr./2025. As três últimas competências são descartadas por ainda não estarem consolidadas.
-- **Escolha sem vazamento:** E\* (melhor modelo estatístico) e ML\* (melhor modelo de *machine learning*)
-  são escolhidos nas 6 origens de validação; o teste é executado uma única vez.
-- **Inferência sobre as 54 séries:** com 18 origens por série, testes série a série (Diebold-Mariano)
-  estariam fora do seu regime assintótico.
-- **Análise espacial:** a matriz de contiguidade do tipo rainha é extraída da malha do IBGE e conferida
-  com fronteiras conhecidas; o Moran e o LISA usam testes de permutação (9.999 permutações).
+- **Variável prevista:** quantidade aprovada mensal (SIA/SUS), grupos 06 e 07, 27 UFs, jan. 2008 a abr. 2025;
+  as três últimas competências disponíveis (maio a jul. 2025) são descartadas por não estarem consolidadas.
+  Mede a demanda atendida e paga, não a necessidade nem o consumo físico.
+- **Sem vazamento:** 12 origens de validação, 5 de intervalo e 18 de teste; nenhum mês-alvo da validação coincide
+  com um do teste. Hiperparâmetros, E* e ML* são escolhidos só na validação.
+- **Inferência:** a UF é a unidade (N = 27); bootstrap por conglomerado de UF; Holm na família confirmatória.
+- **Estoque:** revisão mensal com nível-alvo, prazo de 3 e 6 meses, quantis conformais do erro acumulado; valores
+  em reais pelo valor aprovado por unidade no SIA/SUS (valor de tabela).
 
 ## Autores
 
